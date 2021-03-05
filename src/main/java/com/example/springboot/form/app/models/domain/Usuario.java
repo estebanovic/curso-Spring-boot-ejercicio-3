@@ -9,7 +9,7 @@ public class Usuario {
     
     @NotEmpty
     private String apellido;
-    .
+    
     @NotEmpty
     private String username;
     
