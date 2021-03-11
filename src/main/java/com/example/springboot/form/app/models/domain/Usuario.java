@@ -1,43 +1,59 @@
 package com.example.springboot.form.app.models.domain;
 
+import com.example.springboot.form.app.validations.IdentificadorRegex;
+import com.example.springboot.form.app.validations.Requerido;
+import java.util.Date;
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+//import javax.validation.constraints.NotBlank;
+//import javax.validation.constraints.NotEmpty;
+//import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+//import org.springframework.format.annotation.DateTimeFormat;
 
 public class Usuario {
 
-    @NotEmpty(message = "El nombre no puede estar vacio")
+    //@NotEmpty(message = "El nombre no puede estar vacio")
     private String nombre;
 
-    @NotEmpty
+    //@NotEmpty
+    @Requerido
     private String apellido;
 
-    @Pattern(regexp = "[\\d]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")
+    //@Pattern(regexp = "[\\d]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")
+    @IdentificadorRegex
     private String identificador;
 
-    @NotEmpty
+    @Requerido
     @Size(min = 3, max = 10)
     private String username;
 
-    @NotEmpty
+    @Requerido
     private String password;
 
-    @NotEmpty
+    @Requerido
     @Email(message = "El formato no es valido")
     private String email;
 
-    public Usuario() {
-    }
+    @NotNull
+    @Min(5)
+    @Max(5000)
+    private Integer cuenta;
+    
+    @NotNull
+    @Past
+    //@DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date fechaNacimiento;
 
-    public Usuario(String nombre, String apellido, String identificador, String username, String password, String email) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.identificador = identificador;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-    }
+    //@NotNull
+    @Valid
+    private Pais pais;
+    
 
     public String getNombre() {
         return nombre;
@@ -87,4 +103,27 @@ public class Usuario {
         this.email = email;
     }
 
+    public Integer getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(Integer cuenta) {
+        this.cuenta = cuenta;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public Pais getPais() {
+        return pais;
+    }
+
+    public void setPais(Pais pais) {
+        this.pais = pais;
+    }
 }

@@ -7,12 +7,15 @@
         <h3 th:text="${titulo}"></h3>
 
         <ul>
+            <li th:text="'Pais: ' +${usuario.pais.codigo}"></li>
             <li th:text="'Nombre: '+${usuario.nombre}"></li>
             <li th:text="'Apellido: '+${usuario.apellido}"></li>
             <li th:text="'Username: '+${usuario.identificador}"></li>
             <li th:text="'Username: '+${usuario.username}"></li>
             <li th:text="'Contaseña: '+${usuario.password}"></li>
             <li th:text="'Mail: ' +${usuario.email}"></li>
+            <li th:text="'Cuenta: ' +${usuario.cuenta}"></li>
+            <li th:text="'Fecha Nacimieto: ' +${#dates.format(usuario.fechaNacimiento,'dd/MM/yyyy')}"></li>
         </ul>
 
     </body>
