@@ -1,8 +1,10 @@
 package com.example.springboot.form.app.controllers;
 
 import com.example.springboot.form.app.editors.NombreMayusculaEditors;
+import com.example.springboot.form.app.editors.PaisPropertyEditor;
 import com.example.springboot.form.app.models.domain.Pais;
 import com.example.springboot.form.app.models.domain.Usuario;
+import com.example.springboot.form.app.services.PaisService;
 import com.example.springboot.form.app.validations.UsuarioValidador;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -30,6 +32,12 @@ public class FormController {
 
     @Autowired
     private UsuarioValidador validador;
+    
+    @Autowired
+    private PaisService paisService;
+    
+    @Autowired
+    private PaisPropertyEditor paisPropertyEditor; 
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -40,37 +48,32 @@ public class FormController {
         binder.registerCustomEditor(Date.class, "fechaNacimiento", new CustomDateEditor(dateFormat, true));
         binder.registerCustomEditor(String.class, "nombre", new NombreMayusculaEditors());
         binder.registerCustomEditor(String.class, "apellido", new NombreMayusculaEditors());
+        
+        binder.registerCustomEditor(Pais.class, "pais", paisPropertyEditor);
     }
 
     @ModelAttribute("listaPaises")
     public List<Pais> listaPaises() {
-        return Arrays.asList(
-                new Pais(1, "ES", "España"),
-                new Pais(2, "MX", "México"),
-                new Pais(3, "CL", "Chile"),
-                new Pais(4, "AR", "Argentina"),
-                new Pais(5, "PE", "Perú"),
-                new Pais(6, "CO", "Colombia"),
-                new Pais(7, "VE", "Venezuela"));
+        return paisService.listar();
     }
 
-    @ModelAttribute("paises")
-    public List<String> paises() {
-        return Arrays.asList("España", "México", "Chile", "Argentina", "Perú", "Colombia", "Venezuela");
-    }
-
-    @ModelAttribute("paisesMap")
-    public Map<String, String> paisesMap() {
-        Map<String, String> paises = new HashMap<String, String>();
-        paises.put("ES", "España");
-        paises.put("MX", "Méximo");
-        paises.put("CL", "Chile");
-        paises.put("AR", "Argentina");
-        paises.put("PE", "Perú");
-        paises.put("CO", "Colombia");
-        paises.put("VE", "Venzuela");
-        return paises;
-    }
+//    @ModelAttribute("paises")
+//    public List<String> paises() {
+//        return Arrays.asList("España", "México", "Chile", "Argentina", "Perú", "Colombia", "Venezuela");
+//    }
+//
+//    @ModelAttribute("paisesMap")
+//    public Map<String, String> paisesMap() {
+//        Map<String, String> paises = new HashMap<String, String>();
+//        paises.put("ES", "España");
+//        paises.put("MX", "Méximo");
+//        paises.put("CL", "Chile");
+//        paises.put("AR", "Argentina");
+//        paises.put("PE", "Perú");
+//        paises.put("CO", "Colombia");
+//        paises.put("VE", "Venzuela");
+//        return paises;
+//    }
 
     @GetMapping("/form")
     public String form(Model model) {
