@@ -2,6 +2,7 @@ package com.example.springboot.form.app.controllers;
 
 import com.example.springboot.form.app.editors.NombreMayusculaEditor;
 import com.example.springboot.form.app.editors.PaisPropertyEditor;
+import com.example.springboot.form.app.editors.RolesEditor;
 import com.example.springboot.form.app.models.domain.Pais;
 import com.example.springboot.form.app.models.domain.Role;
 import com.example.springboot.form.app.models.domain.Usuario;
@@ -45,6 +46,9 @@ public class FormController {
     @Autowired
     private PaisPropertyEditor paisPropertyEditor;
 
+    @Autowired
+    private RolesEditor rolesEditor;
+    
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.addValidators(validador);
@@ -56,6 +60,7 @@ public class FormController {
         binder.registerCustomEditor(String.class, "apellido", new NombreMayusculaEditor());
 
         binder.registerCustomEditor(Pais.class, "pais", paisPropertyEditor);
+        binder.registerCustomEditor(Role.class, "roles", rolesEditor);
     }
 
     @ModelAttribute("listaRoles")
