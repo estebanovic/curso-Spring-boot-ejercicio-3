@@ -1,10 +1,12 @@
 package com.example.springboot.form.app.controllers;
 
-import com.example.springboot.form.app.editors.NombreMayusculaEditors;
+import com.example.springboot.form.app.editors.NombreMayusculaEditor;
 import com.example.springboot.form.app.editors.PaisPropertyEditor;
 import com.example.springboot.form.app.models.domain.Pais;
+import com.example.springboot.form.app.models.domain.Role;
 import com.example.springboot.form.app.models.domain.Usuario;
 import com.example.springboot.form.app.services.PaisService;
+import com.example.springboot.form.app.services.RoleService;
 import com.example.springboot.form.app.validations.UsuarioValidador;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -38,6 +40,9 @@ public class FormController {
     private PaisService paisService;
 
     @Autowired
+    private RoleService roleService;
+
+    @Autowired
     private PaisPropertyEditor paisPropertyEditor;
 
     @InitBinder
@@ -47,10 +52,15 @@ public class FormController {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dateFormat.setLenient(true);
         binder.registerCustomEditor(Date.class, "fechaNacimiento", new CustomDateEditor(dateFormat, true));
-        binder.registerCustomEditor(String.class, "nombre", new NombreMayusculaEditors());
-        binder.registerCustomEditor(String.class, "apellido", new NombreMayusculaEditors());
+        binder.registerCustomEditor(String.class, "nombre", new NombreMayusculaEditor());
+        binder.registerCustomEditor(String.class, "apellido", new NombreMayusculaEditor());
 
         binder.registerCustomEditor(Pais.class, "pais", paisPropertyEditor);
+    }
+
+    @ModelAttribute("listaRoles")
+    public List<Role> listaRoles() {
+        return this.roleService.listar();
     }
 
     @ModelAttribute("listaRolesString")
