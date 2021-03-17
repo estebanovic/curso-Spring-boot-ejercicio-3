@@ -7,7 +7,9 @@
         <h3 th:text="${titulo}"></h3>
 
         <ul>
-            <li th:text="'Pais: ' +${usuario.pais.codigo}"></li>
+            <li th:text="'Pais codigo: ' +${usuario.pais.codigo}"></li>
+            <li th:text="'Pais id: ' +${usuario.pais.id}"></li>
+            <li th:text="'Pais nombre: ' +${usuario.pais.nombre}"></li>
             <li th:text="'Nombre: '+${usuario.nombre}"></li>
             <li th:text="'Apellido: '+${usuario.apellido}"></li>
             <li th:text="'Username: '+${usuario.identificador}"></li>
@@ -18,5 +20,9 @@
             <li th:text="'Fecha Nacimieto: ' +${#dates.format(usuario.fechaNacimiento,'dd/MM/yyyy')}"></li>
         </ul>
 
+        <div>Roles</div>
+        <ul>
+            <li th:each="role: ${usuario.roles}" th:text="${role}"></li>
+        </ul>
     </body>
 </html>

@@ -3,11 +3,13 @@ package com.example.springboot.form.app.models.domain;
 import com.example.springboot.form.app.validations.IdentificadorRegex;
 import com.example.springboot.form.app.validations.Requerido;
 import java.util.Date;
-import javax.validation.Valid;
+import java.util.List;
+//import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+//import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 //import javax.validation.constraints.NotBlank;
@@ -44,16 +46,17 @@ public class Usuario {
     @Min(5)
     @Max(5000)
     private Integer cuenta;
-    
+
     @NotNull
     @Past
     //@DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaNacimiento;
 
-    //@NotNull
-    @Valid
+    @NotNull
     private Pais pais;
-    
+
+    @NotEmpty
+    private List<String> roles;
 
     public String getNombre() {
         return nombre;
@@ -126,4 +129,13 @@ public class Usuario {
     public void setPais(Pais pais) {
         this.pais = pais;
     }
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
+
 }

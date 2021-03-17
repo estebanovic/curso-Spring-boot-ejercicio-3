@@ -14,7 +14,7 @@
                         <option th:each="pais: ${listaPaises}" th:text="${pais.nombre}" th:value="${pais.id}"></option>
                     </select>
                 </div>
-                <div th:if="${#fields.hasErrors('pais.codigo')}" th:errors="*{pais.codigo}"></div>
+                <div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></div>
             </div>
             <div>
                 <label for="nombre">Nombre</label>
@@ -29,6 +29,14 @@
                     <input type="text" id="apellido"  th:field="*{apellido}">
                 </div>
                 <div th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></div>
+            </div>
+            <div>
+                <label>Roles</label>
+                <div th:each="role : ${listaRolesMap.entrySet()}">
+                    <input type="checkbox"  th:field="*{roles}" th:value="${role.key}">
+                        <label th:for="${#ids.prev('roles')}" th:text="${role.value}"></label>
+                </div>
+                <div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>
             </div>
             <div>
                 <label for="identificador">ID</label>
@@ -78,6 +86,6 @@
                 </div>
             </div>
         </form>
-</body>
+    </body>
 </html>
 
