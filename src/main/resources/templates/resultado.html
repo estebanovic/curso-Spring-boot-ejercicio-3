@@ -18,9 +18,11 @@
             <li th:text="'Mail: ' +${usuario.email}"></li>
             <li th:text="'Cuenta: ' +${usuario.cuenta}"></li>
             <li th:text="'Fecha Nacimieto: ' +${#dates.format(usuario.fechaNacimiento,'dd/MM/yyyy')}"></li>
+            <li th:text="'Habilitado: ' +${usuario.habilitar}"></li>
+            <li th:text="'Género: ' +${usuario.genero}"></li>
         </ul>
 
-        <div>Roles</div>
+        <h4>Roles</h4>
         <ul>
             <li th:each="role: ${usuario.roles}" th:text="'ID: ' + ${role.id} + ', Nombre: ' + ${role.nombre} + ', Rol: ' + ${role.role}"></li>
         </ul>

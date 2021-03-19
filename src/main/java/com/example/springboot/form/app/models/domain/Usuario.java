@@ -4,26 +4,18 @@ import com.example.springboot.form.app.validations.IdentificadorRegex;
 import com.example.springboot.form.app.validations.Requerido;
 import java.util.Date;
 import java.util.List;
-//import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-//import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-//import javax.validation.constraints.NotBlank;
-//import javax.validation.constraints.NotEmpty;
-//import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-//import org.springframework.format.annotation.DateTimeFormat;
 
 public class Usuario {
 
-    //@NotEmpty(message = "El nombre no puede estar vacio")
     private String nombre;
 
-    //@NotEmpty
     @Requerido
     private String apellido;
 
@@ -57,6 +49,11 @@ public class Usuario {
 
     @NotEmpty
     private List<Role> roles;
+
+    private Boolean habilitar;
+    
+    @NotEmpty
+    private String genero;
 
     public String getNombre() {
         return nombre;
@@ -138,4 +135,21 @@ public class Usuario {
         this.roles = roles;
     }
 
+    public Boolean getHabilitar() {
+        return habilitar;
+    }
+
+    public void setHabilitar(Boolean habilitar) {
+        this.habilitar = habilitar;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    
 }
