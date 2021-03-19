@@ -48,7 +48,7 @@ public class FormController {
 
     @Autowired
     private RolesEditor rolesEditor;
-    
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.addValidators(validador);
@@ -107,6 +107,11 @@ public class FormController {
         paises.put("CO", "Colombia");
         paises.put("VE", "Venzuela");
         return paises;
+    }
+
+    @ModelAttribute("genero")
+    public List<String> genero() {
+        return Arrays.asList("Hombre","Mujer");
     }
 
     @GetMapping("/form")
