@@ -125,6 +125,9 @@ public class FormController {
         usuario.setEmail("jdef@mail.com");
         usuario.setCuenta(45);
         usuario.setHabilitar(true);
+        usuario.setValorSecreto("Algún valor secreto ***");
+        usuario.setPais(new Pais(3, "CL", "Chile"));
+        usuario.setRoles(Arrays.asList(new Role(2,"Usuario","ROLE_USER")));
         model.addAttribute("titulo", "Crear usuario");
         model.addAttribute("usuario", usuario);
         return "form";
